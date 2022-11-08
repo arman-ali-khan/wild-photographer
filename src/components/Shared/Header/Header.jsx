@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../../Context/ContextProvider';
 
 const Header = () => {
+  const {user,logOut} = useContext(UserContext)
+
+  const handleLogOut = ()=>{
+    const accept= window.confirm('You want to Logout?')
+    if(accept){
+      logOut()
+    }
+  }
     return (<div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -22,7 +32,7 @@ const Header = () => {
               <li><a>Item 3</a></li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">Logo</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
@@ -41,7 +51,10 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Get started</a>
+        {
+          user ? <>{user.displayName} <button className='btn btn-info mx-3' onClick={handleLogOut}>Logout</button></>:<> <Link to='/login' className='btn btn-info mx-2'>Login</Link>
+          <Link to='/register' className='btn btn-info mx-2'>Register</Link></>
+        }
         </div>
       </div>
       

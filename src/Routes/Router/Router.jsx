@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../../components/Login/Login";
+import MyReview from "../../components/Pages/Auth/MyReview";
 import ErrorPage from "../../components/Pages/ErrorPage/ErrorPage";
 import Home from "../../components/Pages/Home";
 import Details from "../../components/Pages/Services/Details/Details";
@@ -37,6 +38,10 @@ export const  router = createBrowserRouter([
         {
             path:'/register', 
             element:<Register/>
+        },
+        {
+            path:'/myreview', 
+            element:<MyReview/>
         },
     ]}
 ])

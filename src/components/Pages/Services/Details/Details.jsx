@@ -63,7 +63,7 @@ const Details = () => {
 
         <div>
           {
-            user?.email ?   <AddReview id={_id}/>
+            user?.email || user?.uid ?   <AddReview id={_id}/>
             :
             <p className='text-center text-3xl'>Please <Link className='text-info' to='/login'>Login</Link> to add review</p> 
           }

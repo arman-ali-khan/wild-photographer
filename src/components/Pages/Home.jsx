@@ -1,17 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import HomeService from './HomeService';
 import LatestWork from './LatestWork/LatestWork';
 import Newsletter from './Newsletter/Newsletter';
-import Services from './Services/Services';
 import Slider from './Slider/Slider';
 
 const Home = () => {
+    const services = useLoaderData()
     return (
         <div className='container mx-auto'>
             <Slider/>
           <div className='my-12 container mx-auto'>
             <h2 className='text-2xl ml-4 my-2 font-bold'>Services</h2>
-          <Services/>
+        
+          <div className="px-4 py-16 mx-auto md:px-24 lg:px-8 lg:py-2">
+      <div className="grid gap-8 lg:grid-cols-3 ">
+
+      {
+            services.map(service => <HomeService key={service._id} service={service}/>)
+         }
+      </div>
+    </div>
            <div className='flex justify-center my-3'>
            <Link to='/services' className='text-center btn btn-info font-bold'>See All</Link>
            </div>

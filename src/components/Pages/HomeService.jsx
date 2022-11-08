@@ -3,7 +3,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from 'react-router-dom';
 
-const SingleService = ({service}) => {
+const HomeService = ({service}) => {
     const {name,picture,about,_id} = service;
     return (
 
@@ -46,4 +46,4 @@ const SingleService = ({service}) => {
     );
 };
 
-export default SingleService;
+export default HomeService;

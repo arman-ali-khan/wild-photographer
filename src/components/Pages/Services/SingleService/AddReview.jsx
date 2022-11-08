@@ -1,6 +1,34 @@
-import React from 'react';
 
-const AddReview = () => {
+import React, { useContext } from 'react';
+import simpleDate from 'simple-date';
+import { UserContext } from '../../../../Context/ContextProvider';
+
+const AddReview = ({id}) => {
+
+    var current_date = new Date();
+    var date = simpleDate.format(current_date, 'dashed');
+    console.log(date); 
+    const {user} = useContext(UserContext)
+    const handleOnSubmit = (e)=>{
+        e.preventDefault();
+        const inputText = e.target.review.value;
+        const _id = id;
+        const email = user.email;
+        const fullName = user.displayName;
+        const userPhoto = user.photoURL;
+        const inputReview = {review_id:_id, reviewText:inputText, email: email, fullName: fullName, image:userPhoto,date:date};
+        fetch('http://localhost:5000/review',{
+            method:'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(inputReview)
+        })
+        .then(res=> res.json())
+        .then(data=> console.log(data))
+        console.log(inputText);
+    }
+    
     return (
         <div className='flex justify-center'>
         <div className="flex flex-col  p-8 shadow-sm w-full rounded-xl lg:p-12 bg-gray-50 text-gray-800">
@@ -37,10 +65,14 @@ const AddReview = () => {
           </div>
       </div>
       <div className="flex flex-col w-full">
-          <textarea rows="3" placeholder="Message..." className="p-4 border-2 rounded-md resize-none text-gray-800 bg-gray-50"></textarea>
+         <form onSubmit={handleOnSubmit}>
+        
+        <textarea name='review' rows="3" cols='49' placeholder="Message..." className="p-4 flex justify-center md:w-1/2 mx-auto border-4 rounded-md resize-none text-gray-800 bg-gray-50"></textarea>
+       
         <div className='flex justify-center'>
-        <button type="button" className="py-4 w-64  my-8 font-semibold rounded-md text-gray-50 bg-violet-600">Leave feedback</button>
+        <button type="submit" className="py-4 w-64  my-8 font-semibold rounded-md text-gray-50 bg-violet-600">Leave feedback</button>
         </div>
+         </form>
       </div>
   </div>
 </div>

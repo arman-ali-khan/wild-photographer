@@ -52,8 +52,17 @@ const Header = () => {
         </div>
         <div className="navbar-end">
         {
-          user ? <>{user.displayName} <button className='btn btn-info mx-3' onClick={handleLogOut}>Logout</button></>:<> <Link to='/login' className='btn btn-info mx-2'>Login</Link>
-          <Link to='/register' className='btn btn-info mx-2'>Register</Link></>
+          user ? 
+          <>{user.displayName} 
+          <Link className='btn btn-error btn-outline mx-3' to='/myreview'>My Review</Link>
+          <button className='btn btn-info mx-3' onClick={handleLogOut}>Logout</button>
+          </>
+          :
+          <>
+           <Link to='/login' className='btn btn-info mx-2'>Login</Link>
+
+          <Link to='/register' className='btn btn-info mx-2'>Register</Link>
+          </>
         }
         </div>
       </div>

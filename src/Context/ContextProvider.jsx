@@ -10,7 +10,7 @@ const ContextProvider = ({children}) => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    const [user, setUser] = useState({name: 'Samrat'})
+    const [user, setUser] = useState(null)
 
 
     const createUser = (email, password)=>{

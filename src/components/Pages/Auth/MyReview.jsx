@@ -10,12 +10,7 @@ const MyReview = () => {
 
     const {user} = useContext(UserContext)
     useEffect(()=>{
-        fetch('http://localhost:5000/myReview',{
-            headers:{
-                email: user?.email
-            }
-           
-        })
+        fetch(`http://localhost:5000/myReview?email=${user?.email}`)
         .then(res=> res.json())
         .then(data =>{
             setMyReview(data)

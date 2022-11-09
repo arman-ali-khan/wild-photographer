@@ -16,17 +16,22 @@ const SingleReview = ({myReview}) => {
 			})
 			.then(res=> res.json())
 			.then(data => {
-				notify()
+				if(data.deletedCount){
+					notify()
+					console.log(data);
+				}
 			})
 			
 
 		}
+		
 	}
     return (
-       <div className='border-4'>
+		<div className='border-4'>
+			<ToastContainer />
+		   
         <div className="flex justify-between p-4 ">
 		<div className="flex space-x-4">
-		<ToastContainer />
 			<div>
 				<img src={image || 'https://avatars.githubusercontent.com/u/74469015?v=4'} alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
 			</div>

@@ -57,7 +57,6 @@ const ContextProvider = ({children}) => {
         googleLogin,
         githubLogin,
         updateUser,
-        logOut
     }
     return (
         <UserContext.Provider value={info}>

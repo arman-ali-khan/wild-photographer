@@ -11,6 +11,7 @@ import Services from "../../components/Pages/Services/Services";
 import SingleService from "../../components/Pages/Services/SingleService/SingleService";
 import Register from "../../components/Register/Register";
 import Main from "../../Layout/Main";
+import PrivateRouter from "../PrivateRouter/PrivateRouter";
 
 export const  router = createBrowserRouter([
     {path:'/', element:<Main/>,errorElement:<ErrorPage/>,children:[
@@ -44,11 +45,11 @@ export const  router = createBrowserRouter([
         },
         {
             path:'/myreview', 
-            element:<MyReview/>
+            element:<PrivateRouter><MyReview/></PrivateRouter>
         },
         {
             path:'/addservice', 
-            element:<AddService/>
+            element:<PrivateRouter><AddService/></PrivateRouter>
         },
         {
             path:'/blog', 
@@ -56,7 +57,7 @@ export const  router = createBrowserRouter([
         },
         {
             path:'/edit/:id',
-            element:<EditReview/>,
+            element:<PrivateRouter><EditReview/></PrivateRouter>,
             loader: ({params})=> {
                 return fetch(`http://localhost:5000/edit/${params.id}`)
             }

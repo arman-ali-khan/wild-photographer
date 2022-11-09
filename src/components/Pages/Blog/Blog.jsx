@@ -24,6 +24,20 @@ Though there are many dialects of SQL, all share a common syntax and almost-iden
 A JWT is a string made up of three parts, separated by dots (.), and serialized using base64. In the most common serialization format, compact serialization, the JWT looks something like this: xxxxx.yyyyy.zzzzz.
                 </p>
 			</div>
+
+
+         
+
+            <div className="py-6 space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+				<h3 className="font-semibold md:col-span-5">Difference between Javascript and NodeJS</h3>
+				<p className="md:pl-0 md:col-span-7"> <b>NodeJS :</b> <br />
+NodeJS is a cross-platform and opensource Javascript runtime environment that allows the javascript to be run on the server-side. Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development. 
+                <br /><br />
+                <b>JavaScript : </b><br />
+Javascript is a Scripting language. It is mostly abbreviated as JS. It can be said that Javascript is the updated version of the ECMA script. Javascript is a high-level programming language that uses the concept of Oops but it is based on prototype inheritance. 
+                </p>
+			</div>
+
 		</div>
 	</div>
 </section>

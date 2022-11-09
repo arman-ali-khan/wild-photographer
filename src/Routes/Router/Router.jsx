@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../../components/Login/Login";
+import EditReview from "../../components/Pages/Auth/EditReview";
 import MyReview from "../../components/Pages/Auth/MyReview";
 import ErrorPage from "../../components/Pages/ErrorPage/ErrorPage";
 import Home from "../../components/Pages/Home";
@@ -47,6 +48,12 @@ export const  router = createBrowserRouter([
         {
             path:'/addservice', 
             element:<AddService/>
+        },
+        {
+            path:'/edit/:id', 
+            loader:({params})=> {
+                return fetch(`http://localhost:5000/details/${params.id}`)},
+            element:<EditReview/>
         },
     ]}
 ])

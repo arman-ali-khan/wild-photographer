@@ -1,7 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const SingleOrder = ({myorder}) => {
-    const {fullName,image,reviewText,email,date} = myorder;
+const SingleReview = ({myorder}) => {
+    const {fullName,image,reviewText,_id} = myorder;
+
+
+	const handleDelete=(id)=>{
+		const accept = window.confirm('Are you sure to Delete?')
+		if(accept){
+			fetch(`http://localhost:5000/delete/${id}`,{
+				method:'DELETE'
+			})
+			.then(res=> res.json())
+			.then(data => {
+				if(data.deletedCount>0){
+					alert('Deleted Successfull')
+				}
+			})
+		}
+	}
     return (
        <div className='border-4'>
         <div className="flex justify-between p-4 ">
@@ -9,10 +26,12 @@ const SingleOrder = ({myorder}) => {
 			<div>
 				<img src={image || 'https://avatars.githubusercontent.com/u/74469015?v=4'} alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
 			</div>
-			<div>
+			<div className='flex'>
 				<h4 className="font-bold">{fullName}</h4>
-                <p>{email}</p>
-				<span className="text-xs text-gray-600">{date}</span>
+				<Link to={`/edit/${_id}`} className='btn btn-xs mx-1 btn-success'>Edit</Link>
+				<button onClick={()=>handleDelete(_id)} className='btn btn-xs mx-1 btn-error'>Delete</button>
+               
+				
 			</div>
 		</div>
 		<div className="flex items-center space-x-2 text-yellow-500">
@@ -29,4 +48,4 @@ const SingleOrder = ({myorder}) => {
     );
 };
 
-export default SingleOrder;
+export default SingleReview;

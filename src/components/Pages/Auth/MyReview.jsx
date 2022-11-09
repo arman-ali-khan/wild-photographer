@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from "react-helmet";
 import { UserContext } from '../../../Context/ContextProvider';
-import SingleOrder from './SingleOrder';
+import SingleReview from './SingleReview';
 
 const MyReview = () => {
-    const [myOrders,setMyOrders] = useState([])
+    const [myReview,setMyReview] = useState([])
     const {user} = useContext(UserContext)
     useEffect(()=>{
         fetch('http://localhost:5000/myReview',{
@@ -14,10 +14,9 @@ const MyReview = () => {
            
         })
         .then(res=> res.json())
-        .then(data => setMyOrders(data))
-    },[user?.uid])
+        .then(data => setMyReview(data))
+    },[user?.uid,myReview])
 
-    console.log(myOrders);
     return (
         <div className=" w-full  p-6  divide-y rounded-md divide-gray-300 bg-gray-50 text-gray-800">
               <Helmet>
@@ -26,7 +25,10 @@ const MyReview = () => {
             </Helmet>
 <div className='grid grid-cols-1 md:grid-cols-3 gap-3 '>
 {
-    myOrders.map(myorder => <SingleOrder key={myorder._id} myorder={myorder}/>)
+  myReview.length >0 ?   myReview.map(myReview => <SingleReview key={myReview._id} myorder={myReview}/>) : <>
+  <p></p>
+  <p className='text-center text-3xl'>No Review Added</p>
+  </>
 }
 	
 </div>

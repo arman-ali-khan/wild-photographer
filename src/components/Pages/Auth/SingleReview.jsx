@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SingleReview = ({myorder}) => {
-    const {fullName,image,reviewText,_id} = myorder;
+const SingleReview = ({myReview}) => {
+    const {fullName,image,reviewText,_id} = myReview;
 
 
 	const handleDelete=(id)=>{

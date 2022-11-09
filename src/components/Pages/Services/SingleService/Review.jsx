@@ -20,7 +20,7 @@ const Review = ({review}) => {
                 </div>
                 <div>
                    {
-                    email === user?.email &&  <Link className='btn btn-xs btn-info font-semibold' to={`/edit/:id`}>Edit</Link>
+                    email === user?.email &&  <Link className='btn btn-xs btn-info font-semibold' to={`/edit/${review._id}`}>Edit</Link>
                    }
                     </div>
             </div>

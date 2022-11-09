@@ -50,10 +50,11 @@ export const  router = createBrowserRouter([
             element:<AddService/>
         },
         {
-            path:'/edit/:id', 
-            loader:({params})=> {
-                return fetch(`http://localhost:5000/details/${params.id}`)},
-            element:<EditReview/>
+            path:'/edit/:id',
+            element:<EditReview/>,
+            loader: ({params})=> {
+                return fetch(`http://localhost:5000/edit/${params.id}`)
+            }
         },
     ]}
 ])

@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from "react-helmet";
 import { Link, useLoaderData } from 'react-router-dom';
+
 import { UserContext } from '../../../../Context/ContextProvider';
 import AddReview from '../SingleService/AddReview';
 import Review from '../SingleService/Review';
@@ -15,12 +17,15 @@ const Details = () => {
         fetch(`http://localhost:5000/review/${_id}`)
         .then(res=>res.json())
         .then(data=>setReviews(data) )
-    },[])
+    },[reviews])
 
 
     return (
         <div>
-
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{name} || Wild Photography</title>
+            </Helmet>
             <div>
             <div className="p-5 mx-auto sm:p-10 md:p-16 bg-gray-100 text-gray-800">
 	<div className="flex flex-col  mx-auto overflow-hidden rounded">

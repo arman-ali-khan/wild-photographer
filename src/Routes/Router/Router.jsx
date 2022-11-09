@@ -3,6 +3,7 @@ import Login from "../../components/Login/Login";
 import MyReview from "../../components/Pages/Auth/MyReview";
 import ErrorPage from "../../components/Pages/ErrorPage/ErrorPage";
 import Home from "../../components/Pages/Home";
+import AddService from "../../components/Pages/Services/AddService/AddService";
 import Details from "../../components/Pages/Services/Details/Details";
 import Services from "../../components/Pages/Services/Services";
 import SingleService from "../../components/Pages/Services/SingleService/SingleService";
@@ -42,6 +43,10 @@ export const  router = createBrowserRouter([
         {
             path:'/myreview', 
             element:<MyReview/>
+        },
+        {
+            path:'/addservice', 
+            element:<AddService/>
         },
     ]}
 ])

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../Context/ContextProvider';
 
@@ -32,6 +33,10 @@ const Register = () => {
     }
     return (      
       <section className="bg-white">
+         <Helmet>
+                <meta charSet="utf-8" />
+                <title>Register || Wild Photography</title>
+            </Helmet>
         <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
           <section
             className="relative flex h-32 items-end lg:col-span-5 lg:h-full xl:col-span-6"

@@ -7,7 +7,7 @@ const SingleOrder = ({myorder}) => {
         <div className="flex justify-between p-4 ">
 		<div className="flex space-x-4">
 			<div>
-				<img src={image} alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
+				<img src={image || 'https://avatars.githubusercontent.com/u/74469015?v=4'} alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
 			</div>
 			<div>
 				<h4 className="font-bold">{fullName}</h4>

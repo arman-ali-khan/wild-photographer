@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useLoaderData } from 'react-router-dom';
 import HomeService from './HomeService';
 import LatestWork from './LatestWork/LatestWork';
@@ -9,6 +10,10 @@ const Home = () => {
     const services = useLoaderData()
     return (
         <div className='container mx-auto'>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Home || Wild Photography</title>
+            </Helmet>
             <Slider/>
           <div className='my-12 container mx-auto'>
             <h2 className='text-2xl ml-4 my-2 font-bold'>Services</h2>

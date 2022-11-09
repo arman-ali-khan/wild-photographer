@@ -1,12 +1,21 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import simpleDate from 'simple-date';
 import { UserContext } from '../../../../Context/ContextProvider';
 
 const AddReview = ({id}) => {
+    const [reviewItem, setReviewItem] = useState({})
+    useEffect(()=>{
+        fetch(`http://localhost:5173/details/${id}`)
+        .then(res=>res.json())
+        .then(data=> console.log(data))
+    },[])
+console.log(`http://localhost:5173/details/${id}`);
 
-    var current_date = new Date();
-    var date = simpleDate.format(current_date, 'dashed');
+
+    const current_date = new Date();
+    
+    const date = simpleDate.format(current_date, 'dashed');
     console.log(date); 
     const {user} = useContext(UserContext)
     const handleOnSubmit = (e)=>{
@@ -14,8 +23,8 @@ const AddReview = ({id}) => {
         const inputText = e.target.review.value;
         const _id = id;
         const email = user.email;
-        const fullName = user.displayName;
-        const userPhoto = user.photoURL;
+        const fullName = e.target.reviewerName.value;
+        const userPhoto = e.target.reviewerPhoto.value;
         const inputReview = {review_id:_id, reviewText:inputText, email: email, fullName: fullName, image:userPhoto,date:date};
         fetch('http://localhost:5000/review',{
             method:'POST',
@@ -25,10 +34,13 @@ const AddReview = ({id}) => {
             body: JSON.stringify(inputReview)
         })
         .then(res=> res.json())
-        .then(data=> console.log(data))
+        .then(data=> {
+            e.target.reset()
+            console.log(data)})
         console.log(inputText);
     }
-    
+
+   
     return (
         <div className='flex justify-center'>
         <div className="flex flex-col  p-8 shadow-sm w-full rounded-xl lg:p-12 bg-gray-50 text-gray-800">
@@ -66,7 +78,11 @@ const AddReview = ({id}) => {
       </div>
       <div className="flex flex-col w-full">
          <form onSubmit={handleOnSubmit}>
-        
+
+       <div className='flex justify-center w-1/2 mx-auto'>
+       <input name='reviewerName' className='p-4 w-full flex justify-center mx-auto border-4 rounded-md resize-none text-gray-800 bg-gray-50' defaultValue={user.displayName} type='text' required/>
+       <input name='reviewerPhoto' className='p-4 w-full flex justify-center  mx-auto border-4 rounded-md resize-none text-gray-800 bg-gray-50' type='url' defaultValue={user?.photoURL? user?.photoURL : '' } placeholder='Add Photo Url'  required/>
+       </div>
         <textarea name='review' rows="3" cols='49' placeholder="Message..." className="p-4 flex justify-center md:w-1/2 mx-auto border-4 rounded-md resize-none text-gray-800 bg-gray-50"></textarea>
        
         <div className='flex justify-center'>

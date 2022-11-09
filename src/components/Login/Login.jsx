@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+import { Helmet } from "react-helmet";
 import { Link, useNavigate } from 'react-router-dom';
+
 import { useLocation } from 'react-router-dom/dist';
 import { UserContext } from '../../Context/ContextProvider';
 
@@ -51,6 +53,10 @@ const Login = () => {
       
       
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+          <Helmet>
+                <meta charSet="utf-8" />
+                <title>Login || Wild Photography</title>
+            </Helmet>
         <div className="mx-auto max-w-lg">
           <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
             Get started today

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const SingleReview = ({myReview}) => {
-    const {fullName,image,reviewText,_id} = myReview;
+    const {reviewText,_id,review_id} = myReview;
+	const [service,setService] = useState({})
 
-    const notify = () => toast.success("Delete Successfull");
+	useEffect(()=>{
+		fetch(`http://localhost:5000/details/${review_id}`)
+		.then(res=>res.json())
+		.then(data => setService(data))
+	},[])
 
 	const handleDelete=(id)=>{
 		const accept = window.confirm('Are you sure to Delete?')
@@ -16,8 +19,8 @@ const SingleReview = ({myReview}) => {
 			})
 			.then(res=> res.json())
 			.then(data => {
-				if(data.deletedCount){
-					notify()
+				if(data.deletedCount >0){
+					alert('delete Successfull')
 					console.log(data);
 				}
 			})
@@ -27,16 +30,14 @@ const SingleReview = ({myReview}) => {
 		
 	}
     return (
-		<div className='border-4'>
-			<ToastContainer />
-		   
+		<div className='border-4 rounded-lg'>
         <div className="flex justify-between p-4 ">
 		<div className="flex space-x-4">
 			<div>
-				<img src={image || 'https://avatars.githubusercontent.com/u/74469015?v=4'} alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
+				<img src={service?.picture || 'https://avatars.githubusercontent.com/u/74469015?v=4'} alt="" className="object-cover w-12 h-12 rounded-xl bg-gray-500" />
 			</div>
-			<div className='flex'>
-				<h4 className="font-bold">{fullName}</h4>
+			<div>
+				<h4 className="font-bold">{service.name}</h4>
 				<Link to={`/edit/${_id}`} className='btn btn-xs mx-1 btn-success'>Edit</Link>
 				<button onClick={()=>handleDelete(_id)} className='btn btn-xs mx-1 btn-error'>Delete</button>
                

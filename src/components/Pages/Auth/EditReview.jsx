@@ -41,7 +41,6 @@ const EditReview = () => {
     setReview(newReview);
    }
 
-   console.log(review);
     return (
         <div>
             <section className="p-6 text-gray-800">

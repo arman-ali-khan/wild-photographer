@@ -13,10 +13,10 @@ const Login = () => {
     const {loginUser,googleLogin,githubLogin,loading} = useContext(UserContext)
 
     if(loading){
-      return <div class="flex justify-center flex-col items-center">
-      <div class="spinner-border border-dashed border-primary animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+      return <div className="flex justify-center flex-col items-center">
+      <div className="spinner-border border-dashed border-primary animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
       </div>
-        <span class="visually-hidden">Loading...</span>
+        <span className="visually-hidden">Loading...</span>
     </div>
     }
     const handleLogin = (event)=>{
@@ -29,7 +29,20 @@ const Login = () => {
         .then(result =>{
             const user = result.user;
             console.log(user);
-            navigate(from,{replace:true})
+            const currentUser = {email: user.email}
+            fetch('http://localhost:5000/jwt',{
+            method:'POST',
+            headers:{
+              'content-type':'application/json'
+            },
+            body: JSON.stringify(currentUser)
+            })
+            .then(res=>res.json())
+            .then(data =>{
+              console.log(data);
+              localStorage.setItem('token', data.token)
+              navigate(from,{replace:true})
+            })
 
         })
         .catch(err=>{

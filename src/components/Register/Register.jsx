@@ -1,10 +1,18 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/ContextProvider';
 
 const Register = () => {
-    const {createUser, updateUser} = useContext(UserContext)
+    const {createUser, updateUser, loading} = useContext(UserContext)
+    const navigate = useNavigate()
+    if(loading){
+      return <div class="flex justify-center flex-col items-center">
+      <div class="spinner-border border-dashed border-primary animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+      </div>
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    }
     
     const handleUpdateProfile = (first,last)=>{
         const fullName = `${first} ${last}` 
@@ -25,6 +33,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             handleUpdateProfile(first,last)
+            navigate('/')
         })
         .catch(err=>{
             console.error(err);
@@ -96,8 +105,7 @@ const Register = () => {
                     First Name
                   </label>
       
-                  <input
-                    type="text"
+                  <input required type="text"
                     id="FirstName"
                     name="first_name"
                     className="mt-1 p-3 border-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
@@ -112,8 +120,7 @@ const Register = () => {
                     Last Name
                   </label>
       
-                  <input
-                    type="text"
+                  <input required  type="text"
                     id="LastName"
                     name="last_name"
                     className="mt-1 p-3 border-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
@@ -127,7 +134,7 @@ const Register = () => {
                     Email
                   </label>
       
-                  <input
+                  <input required
                     type="email"
                     id="Email"
                     name="email"
@@ -143,7 +150,7 @@ const Register = () => {
                     Password 
                   </label>
       
-                  <input
+                  <input required
                     type="password"
                     id="Password"
                     name="password"

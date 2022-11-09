@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useLoaderData } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -47,7 +48,10 @@ const EditReview = () => {
             <ToastContainer />
 	<form onSubmit={handleOnSubmit} className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow bg-gray-50 ng-untouched ng-pristine ng-valid">
 		<h2 className="w-full text-3xl font-bold leading-tight">Update Review</h2>
-		
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Update Review || Wild Photography</title>
+            </Helmet>
 		<div>
 			<label htmlFor="message" className="block mb-1 ml-1">Review</label>
 			<textarea onChange={handleOnChenge} name='reviewText' rows='5' defaultValue={reviewEdit[0].reviewText} id="message" type="text" placeholder="Message..." className="block border-4 w-full p-2 rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-600 bg-gray-100"></textarea>

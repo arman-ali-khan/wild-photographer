@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../../components/Login/Login";
 import EditReview from "../../components/Pages/Auth/EditReview";
 import MyReview from "../../components/Pages/Auth/MyReview";
+import Blog from "../../components/Pages/Blog/Blog";
 import ErrorPage from "../../components/Pages/ErrorPage/ErrorPage";
 import Home from "../../components/Pages/Home";
 import AddService from "../../components/Pages/Services/AddService/AddService";
@@ -48,6 +49,10 @@ export const  router = createBrowserRouter([
         {
             path:'/addservice', 
             element:<AddService/>
+        },
+        {
+            path:'/blog', 
+            element:<Blog/>
         },
         {
             path:'/edit/:id',

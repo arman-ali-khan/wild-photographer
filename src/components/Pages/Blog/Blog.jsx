@@ -38,6 +38,16 @@ Javascript is a Scripting language. It is mostly abbreviated as JS. It can be sa
                 </p>
 			</div>
 
+            <div className="py-6 space-y-2 md:grid md:grid-cols-12 md:gap-8 md:space-y-0">
+				<h3 className="font-semibold md:col-span-5">How does node js handle multiple requests same time?</h3>
+				<p className="md:pl-0 md:col-span-7"> We know NodeJS application is single-threaded. Say, if processing involves request A that takes 10 seconds, it does not mean that a request which comes after this request needs to wait 10 seconds to start processing because NodeJS event loops are only single-threaded. The entire NodeJS architecture is not single-threaded. 
+                <br /><br />
+                <b>How NodeJS handle multiple client requests? </b><br />NodeJS receives multiple client requests and places them into <b>EventQueue</b>. NodeJS is built with the concept of event-driven architecture. NodeJS has its own <b>EventLoop</b> which is an infinite loop that receives requests and processes them. EventLoop is the listener for the EventQueue. 
+                <br /><br />
+                If NodeJS can process the request without I/O blocking then the event loop would itself process the request and sends the response back to the client by itself. But, it is possible to process multiple requests parallelly using the NodeJS <b>cluster</b> module or <b>worker_threads</b> module.
+                </p>
+			</div>
+
 		</div>
 	</div>
 </section>

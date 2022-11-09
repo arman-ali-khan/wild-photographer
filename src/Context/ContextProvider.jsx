@@ -9,11 +9,13 @@ const ContextProvider = ({children}) => {
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+    const [loading,setLoading] = useState(true)
 
     const [user, setUser] = useState(null)
 
 
     const createUser = (email, password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -22,6 +24,7 @@ const ContextProvider = ({children}) => {
     }
 
     const loginUser = (email, password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -40,10 +43,13 @@ const ContextProvider = ({children}) => {
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser)=>{
             setUser(currentUser)
+            setLoading(false)
         })
         return ()=> unsubscribe();
     },[])
     const info = {
+        setLoading,
+        loading,
         user, 
         createUser,
         logOut,

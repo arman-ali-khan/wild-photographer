@@ -10,7 +10,15 @@ const Login = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
-    const {loginUser,googleLogin,githubLogin} = useContext(UserContext)
+    const {loginUser,googleLogin,githubLogin,loading} = useContext(UserContext)
+
+    if(loading){
+      return <div class="flex justify-center flex-col items-center">
+      <div class="spinner-border border-dashed border-primary animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+      </div>
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    }
     const handleLogin = (event)=>{
         event.preventDefault()
         const form = event.target;
@@ -49,6 +57,8 @@ const Login = () => {
             console.error(err);
         })
     }
+
+    
     return (
       
       

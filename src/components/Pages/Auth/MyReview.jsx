@@ -10,14 +10,14 @@ const MyReview = () => {
 
     const {user} = useContext(UserContext)
     useEffect(()=>{
-        fetch(`http://localhost:5000/myReview?email=${user?.email}`,{
+        fetch(`https://assignment-11-server-smoky.vercel.app/myReview?email=${user?.email}`,{
             headers:{
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
         .then(res=> {
             if(res.status === 401){
-                logOut()
+               return logOut()
               }
             return res.json()})
         .then(data =>{

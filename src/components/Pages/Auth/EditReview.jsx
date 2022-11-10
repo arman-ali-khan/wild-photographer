@@ -19,7 +19,7 @@ const EditReview = () => {
     
     
     setReview({review})
-    fetch(`http://localhost:5000/edit/${id}`,{
+    fetch(`https://assignment-11-server-smoky.vercel.app/edit/${id}`,{
         method:'PUT',
         headers:{
             'content-type':'application/json'

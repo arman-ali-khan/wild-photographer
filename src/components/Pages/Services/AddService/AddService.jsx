@@ -17,7 +17,7 @@ const AddService = () => {
         const about = form.aboutService.value;
         const service ={name:name, price:price, picture:picture,about:about};
         console.log(service);
-        fetch('http://localhost:5000/services',{
+        fetch('https://assignment-11-server-smoky.vercel.app/services',{
             method:'POST',
             headers:{
                 'content-type':'application/json'

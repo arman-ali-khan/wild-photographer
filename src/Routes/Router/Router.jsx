@@ -17,12 +17,12 @@ export const  router = createBrowserRouter([
     {path:'/', element:<Main/>,errorElement:<ErrorPage/>,children:[
         {
             path:'/',
-            loader:()=>fetch('http://localhost:5000/homeServices'), 
+            loader:()=>fetch('https://assignment-11-server-smoky.vercel.app/homeServices'), 
             element:<Home/>
         },
         {
             path:'/services/',
-            loader:()=>fetch('http://localhost:5000/services'), 
+            loader:()=>fetch('https://assignment-11-server-smoky.vercel.app/services'), 
             element:<Services/>
         },
         {
@@ -36,7 +36,7 @@ export const  router = createBrowserRouter([
         {
             path:'/details/:id',
             loader:({params})=> {
-           return fetch(`http://localhost:5000/details/${params.id}`)
+           return fetch(`https://assignment-11-server-smoky.vercel.app/details/${params.id}`)
             }, element:<Details/>
         },
         {
@@ -59,7 +59,7 @@ export const  router = createBrowserRouter([
             path:'/edit/:id',
             element:<PrivateRouter><EditReview/></PrivateRouter>,
             loader: ({params})=> {
-                return fetch(`http://localhost:5000/edit/${params.id}`)
+                return fetch(`https://assignment-11-server-smoky.vercel.app/edit/${params.id}`)
             }
         },
     ]}

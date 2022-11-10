@@ -10,7 +10,7 @@ const Login = () => {
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
 
-    const {loginUser,googleLogin,githubLogin,loading} = useContext(UserContext)
+    const {loginUser,googleLogin,loading} = useContext(UserContext)
 
     if(loading){
       return <div className="flex justify-center flex-col items-center">
@@ -30,7 +30,7 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             const currentUser = {email: user.email}
-            fetch('http://localhost:5000/jwt',{
+            fetch('https://assignment-11-server-smoky.vercel.app/jwt',{
             method:'POST',
             headers:{
               'content-type':'application/json'
@@ -54,16 +54,20 @@ const Login = () => {
         googleLogin()
         .then(result=>{
             const user = result.user;
-            console.log(user);
-        })
-        .catch(err=>{
-            console.error(err);
-        })
-    }
-    const handleGithubLogin = ()=>{
-        githubLogin()
-        .then(result=>{
-            const user = result.user;
+            const currentUser = {email: user.email}
+            fetch('https://assignment-11-server-smoky.vercel.app/jwt',{
+              method:'POST',
+              headers:{
+                'content-type':'application/json'
+              },
+              body: JSON.stringify(currentUser)
+              })
+              .then(res=>res.json())
+              .then(data =>{
+                console.log(data);
+                localStorage.setItem('token', data.token)
+                navigate(from,{replace:true})
+              })
             console.log(user);
         })
         .catch(err=>{
@@ -170,11 +174,6 @@ const Login = () => {
               className="block w-full btn-outline rounded-lg btn-error btn px-5 py-3 text-sm font-medium text-white"
             >
               Google Sign in
-            </button>
-            <button onClick={handleGithubLogin}
-              className="block w-full rounded-lg btn btn-outline btn-black px-5 py-3 text-sm font-medium "
-            >
-             Github Sign in
             </button>
 
       

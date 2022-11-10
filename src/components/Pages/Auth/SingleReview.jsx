@@ -6,7 +6,7 @@ const SingleReview = ({myReview}) => {
 	const [service,setService] = useState({})
 
 	useEffect(()=>{
-		fetch(`http://localhost:5000/details/${review_id}`)
+		fetch(`https://assignment-11-server-smoky.vercel.app/details/${review_id}`)
 		.then(res=>res.json())
 		.then(data => setService(data))
 	},[])
@@ -14,7 +14,7 @@ const SingleReview = ({myReview}) => {
 	const handleDelete=(id)=>{
 		const accept = window.confirm('Are you sure to Delete?')
 		if(accept){
-			fetch(`http://localhost:5000/delete/${id}`,{
+			fetch(`https://assignment-11-server-smoky.vercel.app/delete/${id}`,{
 				method:'DELETE'
 			})
 			.then(res=> res.json())

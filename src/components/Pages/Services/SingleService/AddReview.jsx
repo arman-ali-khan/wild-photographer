@@ -22,7 +22,7 @@ const AddReview = ({id}) => {
         const fullName = e.target.reviewerName.value;
         const userPhoto = e.target.reviewerPhoto.value;
         const inputReview = {review_id:_id, reviewText:inputText, email: email, fullName: fullName, image:userPhoto,date:date};
-        fetch('http://localhost:5000/review',{
+        fetch('https://assignment-11-server-smoky.vercel.app/review',{
             method:'POST',
             headers:{
                 'content-type':'application/json'
@@ -77,7 +77,7 @@ const AddReview = ({id}) => {
       <div className="flex flex-col w-full">
          <form onSubmit={handleOnSubmit}>
 
-       <div className='flex justify-center w-1/2 mx-auto'>
+       <div className='flex justify-center md:w-1/2 mx-auto'>
        <input name='reviewerName' className='p-4 w-full flex justify-center mx-auto border-4 rounded-md resize-none text-gray-800 bg-gray-50' defaultValue={user.displayName} type='text' required/>
        <input name='reviewerPhoto' className='p-4 w-full flex justify-center  mx-auto border-4 rounded-md resize-none text-gray-800 bg-gray-50' type='url' defaultValue={user?.photoURL? user?.photoURL : '' } placeholder='Add Photo Url'  required/>
        </div>

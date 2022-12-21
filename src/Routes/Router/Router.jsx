@@ -17,7 +17,7 @@ export const  router = createBrowserRouter([
     {path:'/', element:<Main/>,errorElement:<ErrorPage/>,children:[
         {
             path:'/',
-            loader:()=>fetch('https://assignment-11-server-smoky.vercel.app/homeServices'), 
+            
             element:<Home/>
         },
         {

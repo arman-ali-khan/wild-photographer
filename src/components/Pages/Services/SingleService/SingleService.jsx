@@ -24,11 +24,11 @@ const SingleService = ({service}) => {
     }
     return (
 
-    <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+    <div className="overflow-hidden h-68 transition-shadow duration-300 bg-white rounded shadow-sm">
          <PhotoProvider>
       <div className="foo">
           <PhotoView key={_id} className='w-full flex justify-center' src={picture}>
-           <img src={picture} alt="" className="w-full h-96  bg-gray-500" />
+           <img src={picture} alt="" className="w-full h-64  bg-gray-500" />
           </PhotoView>
        
       </div>
@@ -45,7 +45,7 @@ const SingleService = ({service}) => {
               title={name}
               className="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"
             >
-              {name}
+              {name.slice(0,45)}
             </p>
             <p className="mb-2 text-gray-700">
              {about.slice(0,100)}

@@ -11,7 +11,7 @@ const HomeService = ({service}) => {
          <PhotoProvider>
       <div className="foo">
           <PhotoView key={_id} className='w-full flex justify-center' src={picture}>
-           <img src={picture} alt="" className="w-full h-96  bg-gray-500" />
+           <img src={picture} alt="" className="w-full h-64  bg-gray-500" />
           </PhotoView>
        
       </div>

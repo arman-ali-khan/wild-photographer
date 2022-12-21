@@ -18,8 +18,8 @@ const Home = () => {
           <div className='my-12 container mx-auto'>
             <h2 className='text-2xl ml-4 my-2 font-bold'>Services</h2>
         
-          <div className="px-4 py-16 mx-auto md:px-24 lg:px-8 lg:py-2">
-      <div className="grid gap-8 lg:grid-cols-3 ">
+          <div className="px-2 py-10 mx-auto md:px-24 lg:px-4 lg:py-2">
+      <div className="grid gap-2 lg:grid-cols-3 ">
 
       {
             services.map(service => <HomeService key={service._id} service={service}/>)
